@@ -21,6 +21,31 @@ class OrderedArray {
 		array[j] = value; numOfElem++;
 	}
     
+    //search the element in array
+	public int search(long searchKey){
+		int lowerBound=0;
+		int upperBound=numOfElem-1;
+		int current;
+		
+		while(true){
+			current =(lowerBound+upperBound)/2;
+			if(array[current]==searchKey){  //found the element
+				return current;
+			}
+			else if(lowerBound>upperBound){
+				return numOfElem;
+			}
+			else{							 // can not find, divide it
+				if(array[current]<searchKey){ // it is in upper half
+					lowerBound=current+1;
+				}
+				else{						// it is in lower half
+					upperBound=current-1;
+				}
+			}
+		} //end of while
+	} //end of search
+	
     // display array data
 	public void display(){
 		for(int i=0;i<numOfElem;i++){
@@ -44,6 +69,14 @@ class OrderedMain {
 		array.insert(10);
         
         array.display();
+        
+        int searchKey =100;
+		if(array.search(searchKey)!=array.size()){
+			System.out.println("Found " + searchKey);
+		}
+		else{
+			System.out.println("can not find " + searchKey);
+		}
         
     }
 }
