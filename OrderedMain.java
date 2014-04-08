@@ -45,6 +45,21 @@ class OrderedArray {
 			}
 		} //end of while
 	} //end of search
+    
+    //delete an element from an array
+	public boolean delete(int value){
+		int j= search(value);
+		if(j==numOfElem){ //can not find element
+			return false;
+		}
+		else{					//find
+			for(int k=j;k<numOfElem;k++){ // move bigger ones down
+				array[k]=array[k+1];
+			}
+			numOfElem--;
+			return true;
+		}
+	}
 	
     // display array data
 	public void display(){
@@ -70,13 +85,17 @@ class OrderedMain {
         
         array.display();
         
-        int searchKey =100;
+        int searchKey = 2;
 		if(array.search(searchKey)!=array.size()){
 			System.out.println("Found " + searchKey);
 		}
 		else{
 			System.out.println("can not find " + searchKey);
 		}
+        
+        array.delete(38);
+		
+		array.display();
         
     }
 }
